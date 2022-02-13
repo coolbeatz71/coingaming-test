@@ -1,0 +1,30 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.layout {
+    overflow: hidden;
+    overflow-y: auto;
+
+    background: $bg-color;
+    background-repeat: repeat-y;
+
+    &__main {
+        min-height: 100vh;
+
+        background: url('/bg.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: bottom 1rem right -100%;
+
+        &__content {
+            min-height: 90vh;
+            background: url('/figure.png');
+            background-repeat: no-repeat;
+            background-size: 30%;
+            background-position: center bottom;
+
+            padding: $content-padding;
+            margin-top: $header-height;
+        }
+    }
+}

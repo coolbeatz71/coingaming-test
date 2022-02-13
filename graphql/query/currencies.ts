@@ -2,7 +2,7 @@ import { gql } from 'apollo-boost';
 
 export const GET_ALL_PRICES = gql`
     query GetAllPrices($currencies: String!) {
-        (filter:{ quoteSymbol: {_in:[$$currencies]} marketStatus: { _eq: Active }}) {
+        (filter:{ quoteSymbol: {_in:[$currencies]} marketStatus: { _eq: Active }}) {
             marketSymbol
             ticker {
                 lastPrice

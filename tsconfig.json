@@ -19,6 +19,7 @@
             "@containers/*": ["containers/*"],
             "@helpers/*": ["helpers/*"],
             "@constants/*": ["constants/*"],
+            "@graphql/*": ["graphql/*"],
             "@hooks/*": ["hooks/*"],
             "@styles/*": ["styles/*"],
             "@context/*": ["context/*"],

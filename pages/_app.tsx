@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppProps } from 'next/app';
-import client from 'graphql';
+import client from '@graphql/config';
 
 import 'styles/coreui.min.css';
 import { ApolloProvider } from '@apollo/react-hooks';

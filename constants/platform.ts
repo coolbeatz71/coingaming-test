@@ -10,3 +10,6 @@ export const APP_NAME = 'Coinaming';
 export const APP_AUTHOR = `${APP_NAME} LTD`;
 export const APP_HEADLINE = `Now you can track all your cryptos here!`;
 export const APP_DESCRIPTION = 'Just enter the cryptocurrency code on the form to the right.';
+
+export const MIN_CRYPTOS_LIMIT = 3;
+export const MAX_CRYPTOS_LIMIT = 10;

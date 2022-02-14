@@ -1,5 +1,6 @@
 @import 'styles/colors.scss';
 @import 'styles/dimensions.scss';
+@import 'styles/_mixins.scss';
 
 .header {
     position: fixed;
@@ -33,5 +34,13 @@
             width: $max-logo-width;
             height: $min-logo-height;
         }
+    }
+
+    @include mediaSM {
+        padding: 0 $mobile-content-padding;
+    }
+
+    @include mediaXS {
+        padding: 0 $mobile-content-padding;
     }
 }

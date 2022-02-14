@@ -1,19 +1,68 @@
 @import 'styles/colors.scss';
+@import 'styles/_mixins.scss';
 
 .section {
     &__legend {
         [data-headline='true'] {
             font-size: 62px;
-            font-weight: 900;
             color: $light;
             margin-bottom: 2rem;
         }
 
         [data-description='true'] {
-            font-size: 28px;
+            font-size: 25px;
             color: $light-60;
             font-weight: 200;
             line-height: 1.4;
+        }
+
+        @include mediaLG {
+            [data-headline='true'] {
+                font-size: 52px;
+            }
+
+            [data-description='true'] {
+                font-size: 25px;
+            }
+        }
+
+        @include mediaMD {
+            [data-headline='true'] {
+                text-align: center;
+            }
+
+            [data-description='true'] {
+                width: 100%;
+                display: inline-block;
+                text-align: center;
+            }
+        }
+
+        @include mediaSM {
+            [data-headline='true'] {
+                font-size: 48px;
+                text-align: center;
+            }
+
+            [data-description='true'] {
+                width: 100%;
+                font-size: 20px;
+                display: inline-block;
+                text-align: center;
+            }
+        }
+        @include mediaXS {
+            [data-headline='true'] {
+                font-size: 48px;
+                text-align: center;
+            }
+
+            [data-description='true'] {
+                width: 100%;
+                font-size: 20px;
+                display: inline-block;
+                text-align: center;
+            }
         }
     }
 }

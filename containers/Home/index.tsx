@@ -41,8 +41,8 @@ const HomeContainer: FC = () => {
         <Fragment>
             <MainSection onFetchPrices={() => getPricesByBaseSymbol()} />
             <AllCryptoListModal visible={openViewMore} data={cryptoData} onClose={() => setOpenViewMore(false)} />
-            <Row>
-                <Col xs={24} sm={24} md={8}>
+            <Row className="mt-4">
+                <Col xs={24} sm={24} md={25} lg={12} xl={10} xxl={8}>
                     <CryptoList
                         data={cryptoData}
                         error={errAll || errBySymbol}

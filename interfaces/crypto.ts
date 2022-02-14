@@ -1,6 +1,6 @@
 export interface ICryptoData {
     baseSymbol: string;
-    marketSymbol: string;
+    exchangeSymbol: string;
     ticker: {
         lastPrice: string;
     };

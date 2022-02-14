@@ -12,8 +12,8 @@ export interface IMainSectionProps {
 const MainSection: FC<IMainSectionProps> = ({ onFetchPrices }) => {
     return (
         <div className={styles.section}>
-            <Row justify="space-between" gutter={32}>
-                <Col xs={24} sm={24} md={12} className={styles.section__legend}>
+            <Row justify="space-between" gutter={48}>
+                <Col xs={24} sm={24} md={24} lg={12} className={styles.section__legend}>
                     <Title data-headline>
                         Now you can track <br />
                         all your cryptos here!
@@ -24,7 +24,13 @@ const MainSection: FC<IMainSectionProps> = ({ onFetchPrices }) => {
                         <br /> form to the right.
                     </Text>
                 </Col>
-                <Col xs={24} sm={24} md={12} lg={12} className="d-flex justify-content-end">
+                <Col
+                    xs={24}
+                    sm={24}
+                    md={24}
+                    lg={12}
+                    className="d-flex justify-content-lg-end justify-content-md-center"
+                >
                     <AddCryptoForm onFetchPrices={onFetchPrices} />
                 </Col>
             </Row>

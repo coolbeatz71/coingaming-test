@@ -60,6 +60,10 @@
     }
 
     &[data-hasmore='false'] {
+        [class~='ant-avatar'] {
+            object-fit: scale-down;
+            background-color: rgba(255, 192, 203, 0.4);
+        }
         [class~='ant-list-item'] {
             border-bottom-color: $dark-10;
         }

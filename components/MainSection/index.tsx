@@ -5,10 +5,14 @@ import AddCryptoForm from '@components/forms/AddCrypto';
 
 const { Title, Text } = Typography;
 
-const MainSection: FC = () => {
+export interface IMainSectionProps {
+    onFetchPrices: () => void;
+}
+
+const MainSection: FC<IMainSectionProps> = ({ onFetchPrices }) => {
     return (
         <div className={styles.section}>
-            <Row justify="space-between">
+            <Row justify="space-between" gutter={32}>
                 <Col xs={24} sm={24} md={12} className={styles.section__legend}>
                     <Title data-headline>
                         Now you can track <br />
@@ -20,8 +24,8 @@ const MainSection: FC = () => {
                         <br /> form to the right.
                     </Text>
                 </Col>
-                <Col xs={24} sm={24} md={12} lg={12}>
-                    <AddCryptoForm />
+                <Col xs={24} sm={24} md={12} lg={12} className="d-flex justify-content-end">
+                    <AddCryptoForm onFetchPrices={onFetchPrices} />
                 </Col>
             </Row>
         </div>

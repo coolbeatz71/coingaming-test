@@ -1,9 +1,10 @@
 import { gql } from 'apollo-boost';
 
 export const GET_ALL_PRICES = gql`
-    query GetAllPrices($currencies: String!) {
-        markets(filter: { quoteSymbol: { _eq: $currencies }, marketStatus: { _eq: Active } }) {
-            marketSymbol: baseSymbol
+    query GetAllPrices($currency: String!) {
+        markets(filter: { quoteSymbol: { _eq: $currency }, marketStatus: { _eq: Active } }) {
+            baseSymbol
+            marketSymbol
             ticker {
                 lastPrice
             }
@@ -12,10 +13,15 @@ export const GET_ALL_PRICES = gql`
 `;
 
 export const GET_PRICES_BY_BASE_SYMBOL = gql`
-    query GetPricesBySymbol($symbol: String!, $currencies: String!) {
+    query GetPricesByBaseSymbol($baseSymbol: String!, $currency: String!) {
         markets(
-            filter: { baseSymbol: { _eq: $symbol }, quoteSymbol: { _in: [$currencies] }, marketStatus: { _eq: Active } }
+            filter: {
+                baseSymbol: { _eq: $baseSymbol }
+                quoteSymbol: { _in: [$currency] }
+                marketStatus: { _eq: Active }
+            }
         ) {
+            baseSymbol
             marketSymbol
             ticker {
                 lastPrice

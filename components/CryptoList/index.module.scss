@@ -41,4 +41,40 @@
             }
         }
     }
+
+    [class~='ant-spin-container'] {
+        [class~='ant-list-item'] {
+            padding: 1.5rem;
+            padding-right: 0;
+        }
+    }
+
+    [class~='ant-spin'] {
+        padding: 1.5rem;
+        padding-right: 0;
+    }
+
+    &[data-hasmore='false'] {
+        [class~='ant-list-item'] {
+            border-bottom-color: $dark-10;
+        }
+
+        [class~='ant-list-item-meta-title'] {
+            color: $dark;
+        }
+
+        [class~='ant-list-item-meta-description'] {
+            color: $dark-60;
+        }
+
+        [class~='ant-list-item-action'] {
+            [class~='ant-btn'] {
+                color: $dark-60;
+
+                [class~='anticon']:hover {
+                    color: $dark;
+                }
+            }
+        }
+    }
 }

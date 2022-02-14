@@ -28,16 +28,28 @@ $dark: rgba(
     $color: $black,
     $alpha: 0.65,
 );
+$dark-60: rgba(
+    $color: $black,
+    $alpha: 0.6,
+);
 $dark-50: rgba(
     $color: $black,
     $alpha: 0.5,
+);
+$dark-30: rgba(
+    $color: $black,
+    $alpha: 0.3,
+);
+
+$dark-10: rgba(
+    $color: $black,
+    $alpha: 0.1,
 );
 
 $bg-color-50: rgba(
     $color: $bg-color,
     $alpha: 0.5,
 );
-
 $bg-color-80: rgba(
     $color: $bg-color,
     $alpha: 0.8,

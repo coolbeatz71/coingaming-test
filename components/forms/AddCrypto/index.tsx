@@ -1,23 +1,56 @@
 import React, { FC } from 'react';
-import { Button, Card, Form, Input, Typography } from 'antd';
+import { AutoComplete, Button, Card, Form, Typography } from 'antd';
 import StackedLabel from '@components/common/StackedLabel';
 
 import styles from './index.module.scss';
+import { cryptoCodeList } from '@constants/crypto-list';
+import { IUnknownObject } from '@interfaces/app';
+import { useRouter } from 'next/router';
 
 const { Item } = Form;
 
 const btnStyles = `d-flex align-items-center justify-content-center`;
 
-const AddCryptoForm: FC = () => {
+export interface IAddCryptoFormProps {
+    onFetchPrices: () => void;
+}
+
+const AddCryptoForm: FC<IAddCryptoFormProps> = ({ onFetchPrices }) => {
+    const { push } = useRouter();
+
+    const handleOnSubmit = (data: IUnknownObject): void => {
+        const { baseSymbol } = data;
+        if (baseSymbol) {
+            push(`/?base_symbol=${baseSymbol}`, undefined, { shallow: true });
+            onFetchPrices();
+        }
+    };
+
     return (
         <Card hoverable className={styles.addCrypto}>
-            <Form size="large" name="add_crypto" className={styles.addCrypto__form} layout="vertical">
-                <Item name="email">
+            <Form onFinish={handleOnSubmit} name="add_crypto" className={styles.addCrypto__form} layout="vertical">
+                <Item
+                    name="baseSymbol"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Cryptocurrencie is required',
+                        },
+                    ]}
+                    validateTrigger={['onSubmit']}
+                >
                     <StackedLabel label="CRYPTOCURRENCY CODE" required>
-                        <Input size="large" />
+                        <AutoComplete
+                            allowClear
+                            size="large"
+                            options={cryptoCodeList}
+                            filterOption={(val, option) =>
+                                option?.value.toUpperCase().indexOf(val.toUpperCase()) !== -1
+                            }
+                        />
                     </StackedLabel>
                 </Item>
-                <Button block size="large" type="primary" className={`mt-2 ${btnStyles}`}>
+                <Button block size="large" type="primary" htmlType="submit" className={`mt-3 ${btnStyles}`}>
                     Add
                 </Button>
 

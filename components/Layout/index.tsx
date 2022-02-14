@@ -9,8 +9,9 @@ import { APP_AUTHOR, APP_DESCRIPTION, APP_NAME } from '@constants/platform';
 
 import styles from './index.module.scss';
 import Header from './Header';
+import Footer from './Footer';
 
-const { Footer, Content } = AntLayout;
+const { Content } = AntLayout;
 interface ILayoutProps {
     children: ReactElement;
     isHome?: boolean;
@@ -29,7 +30,7 @@ const Layout: FC<ILayoutProps> = ({
     description,
     isHome: _isHome = false,
     showHeader: _showHeader = false,
-    showFooter = false,
+    showFooter = true,
     children,
 }) => {
     const router = useRouter();
@@ -76,7 +77,7 @@ const Layout: FC<ILayoutProps> = ({
             <div className={styles.layout__main}>
                 <Header />
                 <Content className={styles.layout__main__content}>{children}</Content>
-                {showFooter && <Footer className={styles.layout__footer}>footer</Footer>}
+                {showFooter && <Footer className={styles.layout__footer} />}
             </div>
         </AntLayout>
     );

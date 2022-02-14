@@ -15,7 +15,7 @@ const HomeContainer: FC = () => {
     const { query } = useRouter();
     const { base_symbol: baseSymbol } = query;
 
-    const { loading: loadingAll, error } = useQuery<ICryptoPricesResult>(GET_ALL_PRICES, {
+    const { loading: loadAll, error: errAll } = useQuery<ICryptoPricesResult>(GET_ALL_PRICES, {
         variables: {
             currency: 'EUR',
         },
@@ -24,7 +24,7 @@ const HomeContainer: FC = () => {
         },
     });
 
-    const [getPricesByBaseSymbol, { loading: loadingBySymbol }] = useLazyQuery<ICryptoPricesResult>(
+    const [getPricesByBaseSymbol, { loading: loadBySymbol, error: errBySymbol }] = useLazyQuery<ICryptoPricesResult>(
         GET_PRICES_BY_BASE_SYMBOL,
         {
             variables: {
@@ -44,9 +44,9 @@ const HomeContainer: FC = () => {
             <Row>
                 <Col xs={24} sm={24} md={8}>
                     <CryptoList
-                        error={error}
                         data={cryptoData}
-                        loading={loadingAll || loadingBySymbol}
+                        error={errAll || errBySymbol}
+                        loading={loadAll || loadBySymbol}
                         onViewMore={() => setOpenViewMore(true)}
                     />
                 </Col>

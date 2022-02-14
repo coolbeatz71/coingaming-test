@@ -13,7 +13,7 @@ export const GET_ALL_PRICES = gql`
 `;
 
 export const GET_PRICES_BY_BASE_SYMBOL = gql`
-    query GetPricesByBaseSymbol($baseSymbol: String!, $currency: String!) {
+    query GetPricesByBaseSymbol($baseSymbol: String, $currency: String!) {
         markets(
             filter: {
                 baseSymbol: { _eq: $baseSymbol }

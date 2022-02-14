@@ -4,11 +4,10 @@ import StackedLabel from '@components/common/StackedLabel';
 
 import styles from './index.module.scss';
 import { cryptoCodeList } from '@constants/crypto-list';
-import { IUnknownObject } from '@interfaces/app';
 import { useRouter } from 'next/router';
 import { addCryptoRules } from './validation';
 
-const { Item } = Form;
+const { Item, useForm } = Form;
 
 const btnStyles = `d-flex align-items-center justify-content-center`;
 
@@ -19,9 +18,12 @@ export interface IAddCryptoFormProps {
 const AddCryptoForm: FC<IAddCryptoFormProps> = ({ onFetchPrices }) => {
     const { push } = useRouter();
 
-    const handleOnSubmit = (data: IUnknownObject): void => {
+    const [form] = useForm();
+
+    const handleOnSubmit = (data: { baseSymbol?: string }): void => {
         const { baseSymbol } = data;
         if (baseSymbol) {
+            form.resetFields();
             push(`/?base_symbol=${baseSymbol}`, undefined, { shallow: true });
             onFetchPrices();
         }
@@ -29,7 +31,13 @@ const AddCryptoForm: FC<IAddCryptoFormProps> = ({ onFetchPrices }) => {
 
     return (
         <Card hoverable className={styles.addCrypto}>
-            <Form onFinish={handleOnSubmit} name="add_crypto" className={styles.addCrypto__form} layout="vertical">
+            <Form
+                form={form}
+                layout="vertical"
+                onFinish={handleOnSubmit}
+                initialValues={{ baseSymbol: '' }}
+                className={styles.addCrypto__form}
+            >
                 <Item name="baseSymbol" rules={addCryptoRules} validateTrigger={['onSubmit']}>
                     <StackedLabel label="CRYPTOCURRENCY CODE" required>
                         <AutoComplete

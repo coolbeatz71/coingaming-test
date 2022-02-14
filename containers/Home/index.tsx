@@ -12,12 +12,14 @@ const HomeContainer: FC = () => {
     const [openViewMore, setOpenViewMore] = useState<boolean>(false);
     const [cryptoData, setCryptoData] = useState<ICryptoPricesResult>();
 
-    const { query } = useRouter();
+    const { query, push } = useRouter();
     const { base_symbol: baseSymbol } = query;
+    const INIT_QUERY = baseSymbol ? GET_PRICES_BY_BASE_SYMBOL : GET_ALL_PRICES;
 
-    const { loading: loadAll, error: errAll } = useQuery<ICryptoPricesResult>(GET_ALL_PRICES, {
+    const { loading: loadAll, error: errAll } = useQuery<ICryptoPricesResult>(INIT_QUERY, {
         variables: {
             currency: 'EUR',
+            baseSymbol: baseSymbol || undefined,
         },
         onCompleted: (data) => {
             setCryptoData(data);
@@ -37,6 +39,10 @@ const HomeContainer: FC = () => {
         },
     );
 
+    const onGetAll = (): void => {
+        push('/', undefined, { shallow: true });
+    };
+
     return (
         <Fragment>
             <MainSection onFetchPrices={() => getPricesByBaseSymbol()} />
@@ -48,6 +54,8 @@ const HomeContainer: FC = () => {
                         error={errAll || errBySymbol}
                         loading={loadAll || loadBySymbol}
                         onViewMore={() => setOpenViewMore(true)}
+                        onGetAll={onGetAll}
+                        canClear={!!baseSymbol}
                     />
                 </Col>
             </Row>

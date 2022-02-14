@@ -7,6 +7,7 @@ import numeral from 'numeral';
 
 import styles from './index.module.scss';
 import DeleteCrypto from './DeleteCrypto';
+import { MAX_CRYPTOS_LIMIT, MIN_CRYPTOS_LIMIT } from '@constants/platform';
 
 const { Item } = List;
 const { Meta } = Item;
@@ -14,22 +15,34 @@ const { Meta } = Item;
 export interface ICryptoListProps {
     loading: boolean;
     hasMore?: boolean;
+    canClear?: boolean;
+    onGetAll?: () => void;
     onViewMore?: () => void;
     error?: ApolloError;
     data?: ICryptoPricesResult;
 }
 
-const CryptoList: FC<ICryptoListProps> = ({ data, loading = false, error, hasMore = true, onViewMore }) => {
+const CryptoList: FC<ICryptoListProps> = ({
+    data,
+    loading = false,
+    error,
+    hasMore = true,
+    canClear = false,
+    onGetAll,
+    onViewMore,
+}) => {
     const [cryptos, setCryptos] = useState<ICryptoData[] | undefined>(data?.markets);
 
     useEffect(() => {
-        setCryptos(hasMore ? data?.markets.slice(0, 3) : data?.markets.slice(0, 10));
+        setCryptos(hasMore ? data?.markets.slice(0, MIN_CRYPTOS_LIMIT) : data?.markets.slice(0, MAX_CRYPTOS_LIMIT));
     }, [data, hasMore]);
 
     const formatPrice = (price: string): string => numeral(price).format('0.[00]');
 
     const onDelete = (dt: ICryptoData): void => {
-        setCryptos(cryptos?.filter((mrk) => mrk.baseSymbol !== dt.baseSymbol));
+        setCryptos(
+            cryptos?.filter((mrk) => mrk.baseSymbol !== dt.baseSymbol || mrk.exchangeSymbol !== dt.exchangeSymbol),
+        );
     };
 
     return (
@@ -44,11 +57,21 @@ const CryptoList: FC<ICryptoListProps> = ({ data, loading = false, error, hasMor
             {hasMore && (
                 <>
                     <Row justify="end">
-                        <Col>
-                            <Button type="primary" ghost onClick={onViewMore}>
-                                View more
-                            </Button>
-                        </Col>
+                        {canClear && (
+                            <Col>
+                                <Button type="primary" ghost onClick={onGetAll}>
+                                    Get all
+                                </Button>
+                            </Col>
+                        )}
+
+                        {data?.markets && data?.markets?.length > 3 && (
+                            <Col>
+                                <Button type="primary" className="ms-3" ghost onClick={onViewMore}>
+                                    View more
+                                </Button>
+                            </Col>
+                        )}
                     </Row>
                     <br />
                 </>

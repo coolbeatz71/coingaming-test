@@ -2,6 +2,7 @@
 @import 'styles/dimensions.scss';
 
 .addCrypto {
+    width: 70%;
     margin: 1.5rem calc(#{$content-padding} * 1.2);
     &__form {
         padding: 2rem;

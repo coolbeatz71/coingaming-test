@@ -20,7 +20,6 @@
         &__content {
             min-height: 90vh;
             background: url('/figure.png');
-            background-attachment: fixed;
             background-repeat: no-repeat;
             background-size: 30%;
             background-position: center bottom;
@@ -28,5 +27,12 @@
             padding: $content-padding;
             margin-top: $header-height;
         }
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: calc(#{$padding} * 1.5);
     }
 }

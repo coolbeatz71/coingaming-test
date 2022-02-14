@@ -1,23 +1,45 @@
 import React, { FC } from 'react';
-import { Button, Card, Form, Input, Typography } from 'antd';
+import { AutoComplete, Button, Card, Form, Typography } from 'antd';
 import StackedLabel from '@components/common/StackedLabel';
 
 import styles from './index.module.scss';
+import { cryptoCodeList } from '@constants/crypto-list';
+import { IUnknownObject } from '@interfaces/app';
 
 const { Item } = Form;
 
 const btnStyles = `d-flex align-items-center justify-content-center`;
 
 const AddCryptoForm: FC = () => {
+    const handleOnSubmit = (data: IUnknownObject): void => {
+        console.log(data);
+    };
+
     return (
         <Card hoverable className={styles.addCrypto}>
-            <Form size="large" name="add_crypto" className={styles.addCrypto__form} layout="vertical">
-                <Item name="email">
+            <Form onFinish={handleOnSubmit} name="add_crypto" className={styles.addCrypto__form} layout="vertical">
+                <Item
+                    name="currencie"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Cryptocurrencie is required',
+                        },
+                    ]}
+                    validateTrigger={['onSubmit']}
+                >
                     <StackedLabel label="CRYPTOCURRENCY CODE" required>
-                        <Input size="large" />
+                        <AutoComplete
+                            allowClear
+                            size="large"
+                            options={cryptoCodeList}
+                            filterOption={(inputValue, option) =>
+                                option?.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
+                            }
+                        />
                     </StackedLabel>
                 </Item>
-                <Button block size="large" type="primary" className={`mt-2 ${btnStyles}`}>
+                <Button block size="large" type="primary" htmlType="submit" className={`mt-3 ${btnStyles}`}>
                     Add
                 </Button>
 

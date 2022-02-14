@@ -8,7 +8,7 @@ const { Title, Text } = Typography;
 const MainSection: FC = () => {
     return (
         <div className={styles.section}>
-            <Row justify="space-between">
+            <Row justify="space-between" gutter={32}>
                 <Col xs={24} sm={24} md={12} className={styles.section__legend}>
                     <Title data-headline>
                         Now you can track <br />
@@ -20,7 +20,7 @@ const MainSection: FC = () => {
                         <br /> form to the right.
                     </Text>
                 </Col>
-                <Col xs={24} sm={24} md={12} lg={12}>
+                <Col xs={24} sm={24} md={12} lg={12} className="d-flex justify-content-end">
                     <AddCryptoForm />
                 </Col>
             </Row>

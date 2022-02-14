@@ -1,0 +1,22 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.addCrypto {
+    margin: 1.5rem calc(#{$content-padding} * 1.2);
+    &__form {
+        padding: 2rem;
+        padding-bottom: 0.5rem;
+
+        [class~='ant-btn'] {
+            border-radius: 25px;
+        }
+    }
+
+    &__footer {
+        margin: 0 5rem;
+        margin-bottom: 1rem;
+        text-align: center;
+        font-size: 15px;
+        color: $dark-50;
+    }
+}

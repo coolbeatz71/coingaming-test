@@ -1,0 +1,44 @@
+@import 'styles/colors.scss';
+
+.cryptoList {
+    [class~='ant-list-item'] {
+        border-bottom-color: $light-30;
+    }
+
+    [class~='ant-avatar'] {
+        width: 58px;
+        height: 58px;
+
+        img {
+            object-fit: contain;
+        }
+    }
+
+    [class~='ant-list-item-meta-title'] {
+        color: $light;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    [class~='ant-list-item-meta-description'] {
+        font-size: 16px;
+        color: $light-60;
+        font-weight: 300;
+    }
+
+    [class~='ant-list-item-action'] {
+        & > li {
+            padding: 0;
+            [class~='ant-btn'] {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: $light-60;
+
+                [class~='anticon']:hover {
+                    color: $light;
+                }
+            }
+        }
+    }
+}

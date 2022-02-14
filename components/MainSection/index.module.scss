@@ -1,0 +1,19 @@
+@import 'styles/colors.scss';
+
+.section {
+    &__legend {
+        [data-headline='true'] {
+            font-size: 62px;
+            font-weight: 900;
+            color: $light;
+            margin-bottom: 2rem;
+        }
+
+        [data-description='true'] {
+            font-size: 30px;
+            color: $light-60;
+            font-weight: 200;
+            line-height: 1.5;
+        }
+    }
+}

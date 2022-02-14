@@ -29,7 +29,7 @@ const CryptoList: FC<ICryptoListProps> = ({ data, loading = false, error, hasMor
     const formatPrice = (price: string): string => numeral(price).format('0.[00]');
 
     return (
-        <div className={styles.cryptoList} data-hasMore={hasMore}>
+        <div className={styles.cryptoList} data-hasmore={hasMore}>
             {error && (
                 <>
                     <Alert message="Error Message" description={error?.message} type="error" showIcon />
@@ -58,7 +58,7 @@ const CryptoList: FC<ICryptoListProps> = ({ data, loading = false, error, hasMor
                     <Item actions={[<DeleteCrypto data={item} key={i} />]}>
                         <Skeleton avatar title={false} loading={loading} active>
                             <Meta
-                                title={item.marketSymbol}
+                                title={`${item.baseSymbol} (${item.marketSymbol})`}
                                 avatar={<Avatar src="/icon.svg" />}
                                 description={`${formatPrice(item?.ticker?.lastPrice)} €`}
                             />

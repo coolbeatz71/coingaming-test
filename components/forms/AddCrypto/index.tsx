@@ -5,21 +5,32 @@ import StackedLabel from '@components/common/StackedLabel';
 import styles from './index.module.scss';
 import { cryptoCodeList } from '@constants/crypto-list';
 import { IUnknownObject } from '@interfaces/app';
+import { useRouter } from 'next/router';
 
 const { Item } = Form;
 
 const btnStyles = `d-flex align-items-center justify-content-center`;
 
-const AddCryptoForm: FC = () => {
+export interface IAddCryptoFormProps {
+    onFetchPrices: () => void;
+}
+
+const AddCryptoForm: FC<IAddCryptoFormProps> = ({ onFetchPrices }) => {
+    const { push } = useRouter();
+
     const handleOnSubmit = (data: IUnknownObject): void => {
-        console.log(data);
+        const { baseSymbol } = data;
+        if (baseSymbol) {
+            push(`/?base_symbol=${baseSymbol}`, undefined, { shallow: true });
+            onFetchPrices();
+        }
     };
 
     return (
         <Card hoverable className={styles.addCrypto}>
             <Form onFinish={handleOnSubmit} name="add_crypto" className={styles.addCrypto__form} layout="vertical">
                 <Item
-                    name="currencie"
+                    name="baseSymbol"
                     rules={[
                         {
                             required: true,
@@ -33,8 +44,8 @@ const AddCryptoForm: FC = () => {
                             allowClear
                             size="large"
                             options={cryptoCodeList}
-                            filterOption={(inputValue, option) =>
-                                option?.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
+                            filterOption={(val, option) =>
+                                option?.value.toUpperCase().indexOf(val.toUpperCase()) !== -1
                             }
                         />
                     </StackedLabel>

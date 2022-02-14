@@ -11,7 +11,6 @@ const DeleteCrypto: FC<IDeleteCryptoProps> = () => {
     return (
         <Button
             type="text"
-            ghost
             size="large"
             shape="circle"
             icon={<CloseOutlined />}

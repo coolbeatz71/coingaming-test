@@ -10,7 +10,35 @@ $gray: #f8f9fa;
 $default: #e9ecef;
 $bg-color: #2a0a4a;
 
+$light: rgba(
+    $color: $white,
+    $alpha: 0.8,
+);
+$light-60: rgba(
+    $color: $white,
+    $alpha: 0.6,
+);
+
+$light-30: rgba(
+    $color: $white,
+    $alpha: 0.3,
+);
+
+$dark: rgba(
+    $color: $black,
+    $alpha: 0.65,
+);
+$dark-50: rgba(
+    $color: $black,
+    $alpha: 0.5,
+);
+
 $bg-color-50: rgba(
     $color: $bg-color,
     $alpha: 0.5,
+);
+
+$bg-color-80: rgba(
+    $color: $bg-color,
+    $alpha: 0.8,
 );

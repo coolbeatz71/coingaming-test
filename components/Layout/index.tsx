@@ -8,6 +8,7 @@ import { PRIMARY, WARNING } from '@constants/colors';
 import { APP_AUTHOR, APP_DESCRIPTION, APP_NAME } from '@constants/platform';
 
 import styles from './index.module.scss';
+import Header from './Header';
 
 const { Footer, Content } = AntLayout;
 interface ILayoutProps {
@@ -73,6 +74,7 @@ const Layout: FC<ILayoutProps> = ({
             </Head>
 
             <div className={styles.layout__main}>
+                <Header />
                 <Content className={styles.layout__main__content}>{children}</Content>
                 {showFooter && <Footer className={styles.layout__footer}>footer</Footer>}
             </div>

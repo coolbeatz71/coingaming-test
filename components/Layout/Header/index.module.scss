@@ -1,0 +1,37 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.header {
+    position: fixed;
+    transition: ease-out all 0.05s;
+    height: $header-height;
+
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 0 $content-padding;
+    -webkit-backdrop-filter: saturate(180%) blur(80px);
+    backdrop-filter: saturate(180%) blur(80px);
+
+    width: 100%;
+    background-color: $bg-color-80;
+
+    &__row {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        &__logo {
+            background-image: url('/logo.svg');
+            background-size: $logo-bg-size;
+            background-repeat: no-repeat;
+            background-position: left center;
+
+            width: $max-logo-width;
+            height: $min-logo-height;
+        }
+    }
+}

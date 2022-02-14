@@ -1,5 +1,6 @@
 @import 'styles/colors.scss';
 @import 'styles/dimensions.scss';
+@import 'styles/_mixins.scss';
 
 .layout {
     overflow: hidden;
@@ -21,7 +22,7 @@
             min-height: 90vh;
             background: url('/figure.png');
             background-repeat: no-repeat;
-            background-size: 30%;
+            background-size: 25%;
             background-position: center bottom;
 
             padding: $content-padding;
@@ -30,7 +31,58 @@
     }
 
     &__footer {
+        color: $dark-50;
+        font-size: 15px;
         text-align: center;
         padding: calc(#{$padding} * 1.5) $content-padding;
+    }
+
+    @include mediaLG {
+        &__main {
+            background-position: top 0 right -180%;
+            background-size: 80%;
+            &__content {
+                background-size: 35%;
+                background-position: right 5rem bottom;
+            }
+        }
+    }
+
+    @include mediaMD {
+        &__main {
+            background-size: 80%;
+            background-position: top 0 right -100%;
+            &__content {
+                background: unset;
+            }
+        }
+    }
+
+    @include mediaSM {
+        &__main {
+            background-size: 80%;
+            background-position: top 0 right -100%;
+            &__content {
+                background: unset;
+                padding: $mobile-content-padding;
+            }
+        }
+        &__footer {
+            padding: $mobile-content-padding;
+        }
+    }
+
+    @include mediaXS {
+        &__main {
+            background-size: 80%;
+            background-position: top 0 right -100%;
+            &__content {
+                background: unset;
+                padding: $padding;
+            }
+        }
+        &__footer {
+            padding: $mobile-content-padding;
+        }
     }
 }

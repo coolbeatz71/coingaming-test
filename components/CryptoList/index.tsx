@@ -63,7 +63,7 @@ const CryptoList: FC<ICryptoListProps> = ({ data, loading = false, error, hasMor
                         <Skeleton avatar title={false} loading={loading} active>
                             <Meta
                                 avatar={<Avatar src="/icon.svg" />}
-                                title={`${item.baseSymbol} (${item.marketSymbol})`}
+                                title={`${item.baseSymbol} (${item.exchangeSymbol})`}
                                 description={`${formatPrice(item?.ticker?.lastPrice)} €`}
                             />
                         </Skeleton>

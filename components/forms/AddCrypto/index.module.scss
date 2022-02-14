@@ -1,9 +1,10 @@
 @import 'styles/colors.scss';
 @import 'styles/dimensions.scss';
+@import 'styles/_mixins.scss';
 
 .addCrypto {
-    width: 70%;
     margin: 1.5rem calc(#{$content-padding} * 1.2);
+    margin-right: 0;
     &__form {
         padding: 2rem;
         padding-bottom: 0.5rem;
@@ -14,10 +15,55 @@
     }
 
     &__footer {
-        margin: 0 5rem;
+        margin: 0 2.5rem;
         margin-bottom: 1rem;
         text-align: center;
         font-size: 15px;
         color: $dark-50;
+    }
+
+    @include mediaXL {
+        width: 35rem;
+    }
+
+    @include mediaLG {
+        width: 100%;
+        margin: 0;
+
+        &__footer {
+            margin: 0 1rem;
+        }
+    }
+
+    @include mediaMD {
+        width: 100%;
+        justify-self: center;
+        margin: $content-padding 0;
+
+        &__form {
+            padding: 4rem;
+        }
+
+        &__footer {
+            margin: 0 2rem;
+        }
+    }
+
+    @include mediaSM {
+        width: 100%;
+        margin: $mobile-content-padding 0;
+
+        &__footer {
+            margin: 0 1rem;
+        }
+    }
+
+    @include mediaXS {
+        width: 100%;
+        margin: $mobile-content-padding 0;
+
+        &__footer {
+            margin: 0 1rem;
+        }
     }
 }

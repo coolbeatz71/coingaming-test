@@ -4,7 +4,7 @@ export const GET_ALL_PRICES = gql`
     query GetAllPrices($currency: String!) {
         markets(filter: { quoteSymbol: { _eq: $currency }, marketStatus: { _eq: Active } }) {
             baseSymbol
-            marketSymbol
+            exchangeSymbol
             ticker {
                 lastPrice
             }
@@ -22,7 +22,7 @@ export const GET_PRICES_BY_BASE_SYMBOL = gql`
             }
         ) {
             baseSymbol
-            marketSymbol
+            exchangeSymbol
             ticker {
                 lastPrice
             }

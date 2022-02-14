@@ -5,6 +5,11 @@
         border-bottom-color: $light-30;
     }
 
+    [class~='ant-empty-description'] {
+        color: $light;
+        font-weight: 600;
+    }
+
     [class~='ant-avatar'] {
         width: 58px;
         height: 58px;

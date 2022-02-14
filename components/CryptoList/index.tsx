@@ -28,6 +28,10 @@ const CryptoList: FC<ICryptoListProps> = ({ data, loading = false, error, hasMor
 
     const formatPrice = (price: string): string => numeral(price).format('0.[00]');
 
+    const onDelete = (dt: ICryptoData): void => {
+        setCryptos(cryptos?.filter((mrk) => mrk.baseSymbol !== dt.baseSymbol));
+    };
+
     return (
         <div className={styles.cryptoList} data-hasmore={hasMore}>
             {error && (
@@ -52,14 +56,14 @@ const CryptoList: FC<ICryptoListProps> = ({ data, loading = false, error, hasMor
 
             <List
                 loading={loading}
-                itemLayout="horizontal"
                 dataSource={cryptos}
+                itemLayout="horizontal"
                 renderItem={(item, i) => (
-                    <Item actions={[<DeleteCrypto data={item} key={i} />]}>
+                    <Item actions={[<DeleteCrypto data={item} key={i} onDelete={onDelete} />]}>
                         <Skeleton avatar title={false} loading={loading} active>
                             <Meta
-                                title={`${item.baseSymbol} (${item.marketSymbol})`}
                                 avatar={<Avatar src="/icon.svg" />}
+                                title={`${item.baseSymbol} (${item.marketSymbol})`}
                                 description={`${formatPrice(item?.ticker?.lastPrice)} €`}
                             />
                         </Skeleton>

@@ -6,6 +6,7 @@ import styles from './index.module.scss';
 import { cryptoCodeList } from '@constants/crypto-list';
 import { IUnknownObject } from '@interfaces/app';
 import { useRouter } from 'next/router';
+import { addCryptoRules } from './validation';
 
 const { Item } = Form;
 
@@ -29,16 +30,7 @@ const AddCryptoForm: FC<IAddCryptoFormProps> = ({ onFetchPrices }) => {
     return (
         <Card hoverable className={styles.addCrypto}>
             <Form onFinish={handleOnSubmit} name="add_crypto" className={styles.addCrypto__form} layout="vertical">
-                <Item
-                    name="baseSymbol"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Cryptocurrencie is required',
-                        },
-                    ]}
-                    validateTrigger={['onSubmit']}
-                >
+                <Item name="baseSymbol" rules={addCryptoRules} validateTrigger={['onSubmit']}>
                     <StackedLabel label="CRYPTOCURRENCY CODE" required>
                         <AutoComplete
                             allowClear

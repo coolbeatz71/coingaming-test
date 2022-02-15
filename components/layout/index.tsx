@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, useCallback, useEffect, useState } from 'react';
 import { Layout as AntLayout } from 'antd';
 import getPlatformUrl from '@helpers/getPlatformUrl';
 import { useRouter } from 'next/router';
@@ -40,6 +40,19 @@ const Layout: FC<ILayoutProps> = ({
     const _image = image ? `${getImageUrl()}/${image}` : `${getPlatformUrl()}/download.png`;
     const _title = title || '';
 
+    const [scrolled, setScrolled] = useState<string>('');
+
+    const scrollHandler = useCallback(() => {
+        setScrolled(window.pageYOffset > 640 ? 'over' : window.pageYOffset > 80 ? 'scrolled' : '');
+    }, []);
+
+    useEffect(() => {
+        window.addEventListener('scroll', scrollHandler, { passive: true });
+        return () => {
+            window.removeEventListener('scroll', scrollHandler);
+        };
+    }, [scrollHandler]);
+
     return (
         <AntLayout className={styles.layout}>
             <Head>
@@ -75,7 +88,7 @@ const Layout: FC<ILayoutProps> = ({
             </Head>
 
             <div className={styles.layout__main}>
-                <Header />
+                <Header scrolled={scrolled} />
                 <Content className={styles.layout__main__content}>{children}</Content>
                 {showFooter && <Footer className={styles.layout__footer} />}
             </div>

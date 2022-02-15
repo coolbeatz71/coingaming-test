@@ -13,11 +13,36 @@
     align-items: center;
 
     padding: 0 $content-padding;
-    -webkit-backdrop-filter: saturate(180%) blur(80px);
-    backdrop-filter: saturate(180%) blur(80px);
 
     width: 100%;
-    background-color: $bg-color-80;
+    background-color: $bg-color;
+    -webkit-backdrop-filter: saturate(180%) blur(50px);
+    backdrop-filter: saturate(180%) blur(50px);
+
+    -webkit-box-shadow: 0px 1px 1px 0px rgba($color: $black, $alpha: 0.1);
+    -moz-box-shadow: 0px 1px 1px 0px rgba($color: $black, $alpha: 0.1);
+    box-shadow: 0px 1px 1px 0px rgba($color: $black, $alpha: 0.1);
+
+    &[data-scroll='scrolled'],
+    &[data-scroll='over'] {
+        -webkit-box-shadow: 0px 10px 6px -8px rgba($color: $black, $alpha: 0.12);
+        -moz-box-shadow: 0px 10px 6px -8px rgba($color: $black, $alpha: 0.12);
+        box-shadow: 0px 10px 6px -8px rgba($color: $black, $alpha: 0.12);
+    }
+    &[data-scroll='scrolled'] {
+        background-color: $bg-color-80;
+
+        &[data-backdrop-not-supported='false'] {
+            background-color: rgba($color: $bg-color, $alpha: 0.98);
+        }
+    }
+    &[data-scroll='over'] {
+        background-color: $bg-color-80;
+
+        &[data-backdrop-not-supported='false'] {
+            background-color: rgba($color: $bg-color, $alpha: 0.98);
+        }
+    }
 
     &__row {
         height: 100%;

@@ -23,7 +23,7 @@
             background: url('/figure.png');
             background-repeat: no-repeat;
             background-size: 25%;
-            background-position: center bottom;
+            background-position: right 40% bottom;
 
             padding: $content-padding;
             margin-top: $header-height;
@@ -42,7 +42,7 @@
             background-position: top 0 right -180%;
             background-size: 80%;
             &__content {
-                background-size: 35%;
+                background-size: 30%;
                 background-position: right 5rem bottom;
             }
         }

@@ -6,7 +6,7 @@ import { ICryptoData, ICryptoPricesResult } from '@interfaces/crypto';
 import numeral from 'numeral';
 
 import styles from './index.module.scss';
-import DeleteCrypto from './DeleteCrypto';
+import DeleteCrypto from '../common/DeleteCrypto';
 import { MAX_CRYPTOS_LIMIT, MIN_CRYPTOS_LIMIT } from '@constants/platform';
 
 const { Item } = List;
